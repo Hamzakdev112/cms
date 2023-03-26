@@ -19,7 +19,7 @@ app.use(express.json())
 
 
 app.get('/awesome', (req,res)=>{
-    const jsonString = fs.readFileSync(path.join(__dirname, '../src/data.json'), 'utf-8');
+    const jsonString = fs.readFileSync(path.join(__dirname, './src/data.json'), 'utf-8');
     const jsonObj = JSON.parse(jsonString);
     res.json(jsonObj)
 })
@@ -27,7 +27,7 @@ app.get('/awesome', (req,res)=>{
 
 app.put('/', (req,res)=>{
     try{
-        const jsonString = fs.readFileSync(path.join(__dirname, '../src/data.json'), 'utf-8');
+        const jsonString = fs.readFileSync(path.join(__dirname, './src/data.json'), 'utf-8');
         const jsonObj = JSON.parse(jsonString);
         if(req.body.name){
          jsonObj.name = req.body.name;
@@ -42,7 +42,7 @@ app.put('/', (req,res)=>{
             jsonObj.color = req.body.color;
         }
         const newJsonString = JSON.stringify(jsonObj);
-        fs.writeFileSync(path.join(__dirname, '../src/data.json'), newJsonString);
+        fs.writeFileSync(path.join(__dirname, './src/data.json'), newJsonString);
         res.json(JSON.parse(newJsonString))
     }catch(err){
         res.json(err)
