@@ -13,28 +13,25 @@ const H1 = styled.h1`
 
 
 const App = () => {
-
-  
-  
 const [newData, setnewData] = useState(data.name)
 const [name, setName] = useState(data.name)
 const [color, setColor] = useState(data.color)
 const [position ,setPosition] = useState(data.position)
 const [size ,setSize] = useState(data.size)
 const handleClick = async(value)=>{
-   await axios.put('http://localhost:4000', {
+   await axios.put('/', {
     color,
     position,
     size,
     name
   })
-  const {data} = await axios.get('http://localhost:4000/awesome')
+  const {data} = await axios.get('/awesome')
     setnewData(data)
   
 }
 useEffect(()=>{
   const func =async ()=>{
-    const {data} = await axios.get('http://localhost:4000/awesome')
+    const {data} = await axios.get('/awesome')
     setnewData(data)
   }
   func()

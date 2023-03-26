@@ -1,23 +1,18 @@
 const fs = require('fs');
+const functions = require("firebase-functions");
 const express = require('express')
 const app = express()
 const path = require('path')
-const cors = require('cors')
-// Import the functions you need from the SDKs you need
-app.use(cors());
-
-
-app.get('/test', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.json())
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 app.get('/awesome', (req,res)=>{
-    const jsonString = fs.readFileSync(path.join(__dirname, './src/data.json'), 'utf-8');
+    const jsonString = fs.readFileSync(path.join(__dirname, '../src/data.json'), 'utf-8');
     const jsonObj = JSON.parse(jsonString);
     res.json(jsonObj)
 })
@@ -25,7 +20,7 @@ app.get('/awesome', (req,res)=>{
 
 app.put('/', (req,res)=>{
     try{
-        const jsonString = fs.readFileSync(path.join(__dirname, './src/data.json'), 'utf-8');
+        const jsonString = fs.readFileSync(path.join(__dirname, '../src/data.json'), 'utf-8');
         const jsonObj = JSON.parse(jsonString);
         if(req.body.name){
          jsonObj.name = req.body.name;
@@ -40,7 +35,7 @@ app.put('/', (req,res)=>{
             jsonObj.color = req.body.color;
         }
         const newJsonString = JSON.stringify(jsonObj);
-        fs.writeFileSync(path.join(__dirname, './src/data.json'), newJsonString);
+        fs.writeFileSync(path.join(__dirname, '../src/data.json'), newJsonString);
         res.json(JSON.parse(newJsonString))
     }catch(err){
         res.json(err)
@@ -48,8 +43,4 @@ app.put('/', (req,res)=>{
     }
 })
 
-
-app.listen(4000, ()=>{
-    console.log('server started')
-})
-
+exports.app = functions.https.onRequest(app)

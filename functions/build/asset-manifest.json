@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-cms-dbae4/us-central1/app/static/css/main.581f8743.css",
+    "main.js": "/react-cms-dbae4/us-central1/app/static/js/main.e89e40c0.js",
+    "index.html": "/react-cms-dbae4/us-central1/app/index.html",
+    "main.581f8743.css.map": "/react-cms-dbae4/us-central1/app/static/css/main.581f8743.css.map",
+    "main.e89e40c0.js.map": "/react-cms-dbae4/us-central1/app/static/js/main.e89e40c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.581f8743.css",
+    "static/js/main.e89e40c0.js"
+  ]
+}
